@@ -1,6 +1,7 @@
 package lab2p2_hectoracosta;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Main {
     
@@ -18,6 +19,30 @@ public class Main {
         
     }
     
+    public static void mainMenu(){
+        
+        int opt =  Integer.parseInt(JOptionPane.showInputDialog("\"----MENU----\\n1)Crear Animal\\n2)Editar Animal\\n3)Eliminar Animal\\n4)Listar por nombre\\n5)Listar todos\\n6)Salir\\nIngrese una opcion: \""));
+        switch(opt){
+            case 1:
+                
+                break;
+            case 2:
+                String scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a editar: ");
+                Animal animal = getAnimalByScientificName(scientificName);
+                if(!animal.equals(null)){
+                    
+                }
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
+    }
     
     public static void delete(String scientificName){
         
