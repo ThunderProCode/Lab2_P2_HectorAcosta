@@ -29,9 +29,10 @@ public class Main {
         System.out.println("Animal eliminado");
     }
     
-    public static void editAtr(int attribute){
+    public static void editAtr(Animal animal,int attribute){
         switch(attribute){
             case 0:
+                
                 break;
             case 1:
                 break;
@@ -51,13 +52,41 @@ public class Main {
         }
     }
     
+    public static Animal getAnimalByScientificName(String scientificName){
+        for (Animal animal : animals) {
+            if(animal.getScientificName().equals(scientificName)){
+                return animal;
+            }
+        }
+        return null;
+    }
+    
     public static void editScientificName(Animal animal,String newScientificName){
         animal.setScientificName(newScientificName);
     }
     
     public static void editCommonName(Animal animal, String newCommonName){
-    
+        animal.setCommonName(newCommonName);
     }
     
+    public static void editHabitat(Animal animal, String newHabitat){
+        animal.setHabitat(newHabitat);
+    }
+    
+    public static void editFood(Animal animal, String newFood){
+        animal.setFood(newFood);
+    }
+    
+    public static void editDescription(Animal animal, String newDescription){
+        animal.setDescription(newDescription);
+    }
+    
+    public static void editGeography(Animal animal, String newGeography){
+        animal.setGeography(newGeography);
+    }
+    
+    public static void editHp(Animal animal, int newHp){
+        animal.setHp(newHp);
+    }
     
 }
