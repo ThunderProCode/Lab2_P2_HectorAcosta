@@ -84,7 +84,20 @@ public class Main {
         }
     }
     
-   
+   public static void createAnimal(){
+        
+        String scientificName = input("Ingrese el nombre cientifico: ");
+        String commonName = input("Ingrese el nombre comun: ");
+        String habitat = input("Ingrese habitat: ");
+        String food = input("Ingrese alimentacion: ");
+        String description = input("Ingrese descripcion: ");
+        String geography = input("Ingrese ubicacion geografica: ");
+        int hp = Integer.parseInt(input("Ingrese vida: "));
+        
+        Animal newAnimal = new Animal(scientificName,commonName,habitat,food,description,geography,hp);
+        animals.add(newAnimal);
+        
+   }
     
     public static void delete(Animal animal){
         animals.remove(animal);
