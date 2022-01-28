@@ -35,7 +35,7 @@ public class Main {
 
                         String scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a editar: ");
                         Animal animal = getAnimalByScientificName(scientificName);
-                        if(!animal.equals(null)){
+                        if(animal != null){
                             editMenu(animal);
                         }else{
                             JOptionPane.showMessageDialog(null, "Animal no encontrado");
@@ -85,7 +85,7 @@ public class Main {
                 }
             }
             
-        }catch(Exception NumberFormatException){
+        }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Debe ingresar una opcion");
             mainMenu();
         }
