@@ -156,6 +156,11 @@ public class Animal {
         this.hp = hp;
     }
 
+    @Override
+    public String toString() {
+        return "--Animal--\nNombre cientifico: " + scientificName + "\n Nombre Comun: " + commonName + "\n Habitat: " + habitat + "\n Alimentacion: " + food + "\n Descripcion: " + description + "\n Ubicacion Geografica: " + geography + "\n Vida: " + hp;
+    }
+
     
     
 }
