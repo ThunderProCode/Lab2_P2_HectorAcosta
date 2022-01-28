@@ -30,12 +30,23 @@ public class Main {
                 String scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a editar: ");
                 Animal animal = getAnimalByScientificName(scientificName);
                 if(!animal.equals(null)){
-                    
+                    editMenu(animal);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Animal no encontrado");
                 }
                 break;
             case 3:
+                scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a eliminar: ");
+                animal = getAnimalByScientificName(scientificName);
+                
+                if(!animal.equals(null)){
+                    delete(animal);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Animal no encontrado");
+                }
                 break;
             case 4:
+                
                 break;
             case 5:
                 break;
@@ -44,14 +55,21 @@ public class Main {
         }
     }
     
-    public static void delete(String scientificName){
-        
-        for (Animal animal : animals) {
-            if(animal.getScientificName().equals(scientificName)){
-                animals.remove(animal);
-            }
+    public static void editMenu(Animal animal){
+        int opt = Integer.parseInt( JOptionPane.showInputDialog("----EDITAR ANIMAL----\n1)Editar un atributo:\n2)Editar todos los atributos: \nIngrese una opcion: ") );
+        switch(opt){
+            case 1:
+                int attribute = Integer.parseInt( JOptionPane.showInputDialog("0- Nombre Cientifico\n1- Nombre Comun\n2- Habitat\n3- Alimentacion\n4- Descripcion\n5- Ubicacion geografica\n6- Vida\nIngrese una opcion: ") );
+                editAtr(animal,attribute);
+                break;
+            case 2:
+                break;
         }
-        System.out.println("Animal eliminado");
+    }
+    
+    public static void delete(Animal animal){
+        animals.remove(animal);
+        JOptionPane.showMessageDialog(null,"Animal eliminado");
     }
     
     public static void editAtr(Animal animal,int attribute){
