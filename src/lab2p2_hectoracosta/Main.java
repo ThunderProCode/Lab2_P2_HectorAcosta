@@ -25,8 +25,8 @@ public class Main {
         try{
         
             int opt = 0;
-            while(opt !=7){
-                opt =  Integer.parseInt(JOptionPane.showInputDialog("----MENU----\n1)Crear Animal\n2)Editar Animal\n3)Eliminar Animal\n4)Listar por posicion\n5)Listar todos\n6)Listar por nombre\n7)Salir\nIngrese una opcion: "));
+            while(opt !=8){
+                opt =  Integer.parseInt(JOptionPane.showInputDialog("----MENU----\n1)Crear Animal\n2)Editar Animal\n3)Eliminar Animal\n4)Listar por posicion\n5)Listar todos\n6)Listar por nombre\n7)Alimentar animal\n8)Salir\nIngrese una opcion: "));
                 switch(opt){
                     case 1:
                         createAnimal();
@@ -75,6 +75,9 @@ public class Main {
                         
                         break;
                     case 7:
+                        feed();
+                        break;
+                    case 8:
                         break;
                     default:
                         JOptionPane.showMessageDialog(null,"Opcion Invalida");
@@ -101,6 +104,20 @@ public class Main {
                 break;
         }
       
+    }
+    
+    public static void feed(){
+        int pos1 = Integer.parseInt( JOptionPane.showInputDialog("Ingrese posicion del animal que se alimenta: ") );
+        Animal animal1 = getAnimalByPos(pos1);
+        
+        int pos2 = Integer.parseInt( JOptionPane.showInputDialog("Ingrese posicion del animal que sera devorado: ") );
+        Animal animal2 = getAnimalByPos(pos2);
+        
+        animal1.setHp(animal1.getHp()+animal2.getHp());
+        animals.remove(animal2);
+        
+        JOptionPane.showMessageDialog(null, animal1.getCommonName() + " ha devorado a " + animal2.getCommonName());
+        
     }
     
     public static void listAnimalByName(String name){
@@ -219,6 +236,11 @@ public class Main {
             allAnimals += animal + "\n";
         }
         JOptionPane.showMessageDialog(null, allAnimals);
+    }
+    
+    
+    public static Animal getAnimalByPos(int pos){
+        return animals.get(pos);
     }
     
     public static Animal getAnimalByScientificName(String scientificName){
