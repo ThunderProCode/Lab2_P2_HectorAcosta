@@ -22,57 +22,74 @@ public class Main {
     
     public static void mainMenu(){
         
-        int opt = 0;
-        while(opt !=6){
-            opt =  Integer.parseInt(JOptionPane.showInputDialog("----MENU----\n1)Crear Animal\n2)Editar Animal\n3)Eliminar Animal\n4)Listar por nombre\n5)Listar todos\n6)Salir\nIngrese una opcion: "));
-            switch(opt){
-                case 1:
+        try{
+        
+            int opt = 0;
+            while(opt !=7){
+                opt =  Integer.parseInt(JOptionPane.showInputDialog("----MENU----\n1)Crear Animal\n2)Editar Animal\n3)Eliminar Animal\n4)Listar por posicion\n5)Listar todos\n6)Listar por nombre\n7)Salir\nIngrese una opcion: "));
+                switch(opt){
+                    case 1:
+                        createAnimal();
+                        break;
+                    case 2:
 
-                    break;
-                case 2:
+                        String scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a editar: ");
+                        Animal animal = getAnimalByScientificName(scientificName);
+                        if(!animal.equals(null)){
+                            editMenu(animal);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Animal no encontrado");
+                        }
 
-                    String scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a editar: ");
-                    Animal animal = getAnimalByScientificName(scientificName);
-                    if(!animal.equals(null)){
-                        editMenu(animal);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Animal no encontrado");
-                    }
+                        break;
 
-                    break;
+                    case 3:
 
-                case 3:
+                        scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a eliminar: ");
+                        animal = getAnimalByScientificName(scientificName);
 
-                    scientificName = JOptionPane.showInputDialog("Ingrese nombre cientifico del animal a eliminar: ");
-                    animal = getAnimalByScientificName(scientificName);
+                        if(animal != null){
+                            delete(animal);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Animal no encontrado");
+                        }
 
-                    if(!animal.equals(null)){
-                        delete(animal);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Animal no encontrado");
-                    }
-                    break;
+                        break;
 
-                case 4:
+                    case 4:
 
-                    int pos = Integer.parseInt( JOptionPane.showInputDialog("Ingrese la posicion del animal a listar: ") );
+                        int pos = Integer.parseInt( JOptionPane.showInputDialog("Ingrese la posicion del animal a listar: ") );
 
-                    if(pos<=animals.size()){
-                        JOptionPane.showMessageDialog(null, animals.get(pos));
-                    }
+                        if(pos<=animals.size()){
+                            JOptionPane.showMessageDialog(null, animals.get(pos));
+                        }
 
-                    break;
-                case 5:
-                    listAllAnimals();
-                    break;
-                case 6:
-
-                    break;
+                        break;
+                    case 5:
+                        listAllAnimals();
+                        break;
+                    case 6:
+                        
+                        String commonName = input("Ingrese el nombre comun del animal a listar: ");
+                        listAnimalByName(commonName);
+                        
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null,"Opcion Invalida");
+                        break;
+                }
             }
+            
+        }catch(Exception NumberFormatException){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una opcion");
+            mainMenu();
         }
     }
     
     public static void editMenu(Animal animal){
+        
         int opt = Integer.parseInt( JOptionPane.showInputDialog("----EDITAR ANIMAL----\n1)Editar un atributo:\n2)Editar todos los atributos: \nIngrese una opcion: ") );
         switch(opt){
             case 1:
@@ -80,7 +97,17 @@ public class Main {
                 editAtr(animal,attribute);
                 break;
             case 2:
+                editAll(animal);
                 break;
+        }
+      
+    }
+    
+    public static void listAnimalByName(String name){
+        for (Animal animal : animals) {
+            if(animal.getCommonName().equals(name)){
+                JOptionPane.showMessageDialog(null, animal);
+            }
         }
     }
     
@@ -95,8 +122,7 @@ public class Main {
         int hp = Integer.parseInt(input("Ingrese vida: "));
         
         Animal newAnimal = new Animal(scientificName,commonName,habitat,food,description,geography,hp);
-        animals.add(newAnimal);
-        
+        animals.add(newAnimal);    
    }
     
     public static void delete(Animal animal){
